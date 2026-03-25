@@ -5,9 +5,50 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WarrantyRepairCenter"
         mc:Ignorable="d"
-        Title="CustomerWnd" Height="450" Width="800">
+        Title="CustomerWnd" Height="428" Width="477">
     <Grid>
-        <Button x:Name="addCustomerBtn" Content="Button" HorizontalAlignment="Left" Margin="191,70,0,0" VerticalAlignment="Top" Height="147" Width="313" Click="addCustomerBtn_Click"/>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <Border HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="Aqua">
+                <Label Content="Customer management" VerticalAlignment="Top" FontSize="25" HorizontalAlignment="Center" Margin="5" FontWeight="Bold"/>
+            </Border>
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,5,10,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Margin="5" Content="Name:"/>
+                <TextBox Grid.Row="0" Grid.Column="1" Margin="5" x:Name="txtName"/>
+                <Label Grid.Row="1" Grid.Column="0" Margin="5" Content="Email:"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Margin="5" x:Name="txtEmail"/>
+                <Label Grid.Row="2" Grid.Column="0" Margin="5" Content="Phone number:"/>
+                <TextBox Grid.Row="2" Grid.Column="1" Margin="5" x:Name="txtPhone"/>
+                <Label Grid.Row="3" Grid.Column="0" Margin="5" Content="Address:"/>
+                <TextBox Grid.Row="3" Grid.Column="1" Margin="5" x:Name="txtAddress"/>
+            </Grid>
+            <StackPanel Grid.Row="2" Margin="5" HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Top">
+                <Button x:Name="btnRefresh" Content="Refresh" Margin="0,0,0,0" Height="30" MinWidth="80" Click="btnRefresh_Click"/>
+                <Button x:Name="btnAdd" Content="Add" Margin="10,0,0,0" Height="30" MinWidth="80" Click="btnAdd_Click"/>
+                <Button x:Name="btnEdit" Content="Edit" Margin="10,0,0,0" Height="30" MinWidth="80" Click="btnEdit_Click"/>
+                <Button x:Name="btnRemove" Content="Remove" Margin="10,0,0,0" Height="30" MinWidth="80" Click="btnRemove_Click"/>
+            </StackPanel>
+        </StackPanel>
+        <DataGrid Grid.Row="1" x:Name="dgData" Margin="5" AutoGenerateColumns="False" CanUserAddRows="False" SelectionChanged="dgData_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Customer Name" Binding="{Binding Name}" Width="40*"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="20*"/>
+                <DataGridTextColumn Header="Phone number" Binding="{Binding PhoneNumber}" Width="25*"/>
+                <DataGridTextColumn Header="Address" Binding="{Binding Address}" Width="25*"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

@@ -6,8 +6,6 @@ namespace WarrantyRepairCenter.DataAccessLayer
 {
     internal class CustomerDAL
     {
-        internal static CustomerDAL Instance { get; } = new CustomerDAL();
-
         public List<Customer> GetAllCustomers() => WRCDbCtx.Instance.Customers.AsNoTracking().ToList();
 
         public Customer? GetCustomer(Guid id) => WRCDbCtx.Instance.Customers.AsNoTracking().FirstOrDefault(c => c.ID == id);
@@ -27,7 +25,8 @@ namespace WarrantyRepairCenter.DataAccessLayer
         public void DeleteCustomer(Guid id)
         {
             Customer customer = GetCustomer(id) ?? throw new InvalidOperationException($"Customer with ID {id} not found.");
-            WRCDbCtx.Instance.Customers.Remove(customer);
+            customer.Deleted = true;
+            WRCDbCtx.Instance.Customers.Update(customer);
             WRCDbCtx.Instance.SaveChanges();
         }
     }

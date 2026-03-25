@@ -24,8 +24,8 @@ public class CustomerCfg : EntityCfg<Customer>
         builder.Property(c => c.PhoneNumber).HasColumnName("phone_number").IsRequired().HasMaxLength(15);
         builder.Property(c => c.Address).HasColumnName("address").IsRequired().HasMaxLength(200);
 
-        builder.HasIndex(c => c.PhoneNumber).IsUnique();
-        builder.HasIndex(c => c.Email).IsUnique();
+        builder.HasIndex(c => c.PhoneNumber);
+        builder.HasIndex(c => c.Email);
 
         builder.HasMany(c => c.Devices)
                .WithOne(d => d.Customer)
