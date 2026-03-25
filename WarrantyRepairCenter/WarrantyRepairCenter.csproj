@@ -3,10 +3,10 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
-    <RootNamespace>SP26_SE1974_PRN212_E_WARMS</RootNamespace>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <UserSecretsId>0132983b-eead-436b-ac5b-b465e4888a65</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,6 +21,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.5" />
+    <PackageReference Include="UUIDNext" Version="4.2.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,8 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DataAccessLayers\" />
-    <Folder Include="BusinessLogicLayers\" />
+    <Folder Include="BusinessLogicLayer\" />
   </ItemGroup>
 
 </Project>

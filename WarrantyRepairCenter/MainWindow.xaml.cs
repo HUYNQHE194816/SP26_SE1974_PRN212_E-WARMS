@@ -9,7 +9,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SP26_SE1974_PRN212_E_WARMS
+namespace WarrantyRepairCenter
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -19,6 +19,12 @@ namespace SP26_SE1974_PRN212_E_WARMS
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void manageCustomerBtn_Click(object sender, RoutedEventArgs e)
+        {
+            CustomerWnd wnd = new CustomerWnd();
+            wnd.ShowDialog();
         }
     }
 }

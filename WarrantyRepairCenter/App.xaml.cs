@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace SP26_SE1974_PRN212_E_WARMS
+namespace WarrantyRepairCenter
 {
     /// <summary>
     /// Interaction logic for App.xaml
