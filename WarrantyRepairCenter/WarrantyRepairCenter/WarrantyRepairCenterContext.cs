@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DAL.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 
-namespace DAL.Entities;
+namespace SP26_SE1974_PRN212_E_WARMS;
 
 public partial class WarrantyRepairCenterContext : DbContext
 {
@@ -36,7 +37,7 @@ public partial class WarrantyRepairCenterContext : DbContext
     {
         optionsBuilder.UseSqlServer(GetConnectionString());
     }
-    private String GetConnectionString()
+    private string GetConnectionString()
     {
         IConfiguration config = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
