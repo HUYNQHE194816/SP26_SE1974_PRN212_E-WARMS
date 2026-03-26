@@ -1,22 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using WarrantyRepairCenter.Authentication;
 using WarrantyRepairCenter.BusinessLogicLayer;
-using WarrantyRepairCenter.DataAccessLayer;
-using WarrantyRepairCenter.DBContext;
 using WarrantyRepairCenter.Entities;
 
-namespace WarrantyRepairCenter
+namespace WarrantyRepairCenter.UserInterfaces
 {
     /// <summary>
     /// Interaction logic for CustomerWnd.xaml
@@ -42,10 +30,17 @@ namespace WarrantyRepairCenter
             string email = txtEmail.Text.Trim();
             string phone = txtPhone.Text.Trim();
             string address = txtAddress.Text.Trim();
-            bool success = CustomerBLL.Instance.AddCustomer(name, email, phone, address, out string message);
-            if (!success)
+            try
             {
-                MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (!CustomerBLL.Instance.AddCustomer(name, email, phone, address, out string message))
+                {
+                    MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+            }
+            catch (UnauthenticatedException)
+            {
+                Close();
                 return;
             }
             UpdateDG();
@@ -58,10 +53,17 @@ namespace WarrantyRepairCenter
             string email = txtEmail.Text.Trim();
             string phone = txtPhone.Text.Trim();
             string address = txtAddress.Text.Trim();
-            bool success = CustomerBLL.Instance.UpdateCustomer(customer?.ID, name, email, phone, address, out string message);
-            if (!success)
+            try
             {
-                MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (!CustomerBLL.Instance.UpdateCustomer(customer?.ID, name, email, phone, address, out string message))
+                {
+                    MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+            }
+            catch (UnauthenticatedException)
+            {
+                Close();
                 return;
             }
             UpdateDG();
@@ -70,10 +72,17 @@ namespace WarrantyRepairCenter
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
             Customer? customer = dgData.SelectedItem as Customer;
-            bool success = CustomerBLL.Instance.RemoveCustomer(customer?.ID, out string message);
-            if (!success)
+            try
             {
-                MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (!CustomerBLL.Instance.RemoveCustomer(customer?.ID, out string message))
+                {
+                    MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+            }
+            catch (UnauthenticatedException)
+            {
+                Close();
                 return;
             }
             UpdateDG();
@@ -91,7 +100,15 @@ namespace WarrantyRepairCenter
 
         void UpdateDG()
         {
-            dgData.ItemsSource = CustomerBLL.Instance.GetAllCustomers();
+            try
+            {
+                dgData.ItemsSource = CustomerBLL.Instance.GetAllCustomers();
+            }
+            catch (UnauthenticatedException)
+            {
+                Close();
+                return;
+            }
         }
     }
 }

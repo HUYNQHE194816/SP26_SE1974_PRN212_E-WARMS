@@ -1,4 +1,5 @@
-﻿using WarrantyRepairCenter.DataAccessLayer;
+﻿using WarrantyRepairCenter.Authentication;
+using WarrantyRepairCenter.DataAccessLayer;
 using WarrantyRepairCenter.Entities;
 
 namespace WarrantyRepairCenter.BusinessLogicLayer
@@ -9,12 +10,21 @@ namespace WarrantyRepairCenter.BusinessLogicLayer
 
         CustomerDAL _dal = new CustomerDAL();
 
-        public List<Customer> GetAllCustomers() => _dal.GetAllCustomers();
+        public List<Customer> GetAllCustomers()
+        {
+            CheckAuth();
+            return _dal.GetAllCustomers();
+        }
 
-        public Customer? GetCustomer(Guid id) => _dal.GetCustomer(id);
+        public Customer? GetCustomer(Guid id)
+        {
+            CheckAuth();
+            return _dal.GetCustomer(id);
+        }
 
         public bool AddCustomer(string name, string email, string phoneNumber, string address, out string message)
         {
+            CheckAuth();
             if (string.IsNullOrWhiteSpace(name))
             {
                 message = "Customer name cannot be empty.";
@@ -64,6 +74,7 @@ namespace WarrantyRepairCenter.BusinessLogicLayer
 
         public bool UpdateCustomer(Guid? id, string name, string email, string phoneNumber, string address, out string message)
         {
+            CheckAuth();
             if (id is null)
             {
                 message = "Customer not found.";
@@ -121,6 +132,7 @@ namespace WarrantyRepairCenter.BusinessLogicLayer
 
         public bool RemoveCustomer(Guid? id, out string message)
         {
+            CheckAuth();
             if (id is null)
             {
                 message = "Customer not found.";
@@ -137,6 +149,12 @@ namespace WarrantyRepairCenter.BusinessLogicLayer
             }
             message = "Customer removed successfully.";
             return true;
+        }
+
+        static void CheckAuth()
+        {
+            if (!AuthHelper.IsAuthenticated())
+                throw new UnauthenticatedException();
         }
     }
 }

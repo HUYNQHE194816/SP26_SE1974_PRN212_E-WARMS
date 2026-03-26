@@ -1,0 +1,13 @@
+﻿<Window x:Class="WarrantyRepairCenter.UserInterfaces.DashboardWnd"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WarrantyRepairCenter.UserInterfaces"
+        mc:Ignorable="d"
+        Title="DashboardWnd" Height="450" Width="800">
+    <Grid>
+        <Button x:Name="logoutBtn" Content="Logout" HorizontalAlignment="Left" Margin="41,35,0,0" VerticalAlignment="Top" Click="logoutBtn_Click"/>
+
+    </Grid>
+</Window>

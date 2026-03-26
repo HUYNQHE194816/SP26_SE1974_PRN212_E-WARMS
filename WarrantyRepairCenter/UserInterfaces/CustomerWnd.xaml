@@ -1,4 +1,4 @@
-﻿<Window x:Class="WarrantyRepairCenter.CustomerWnd"
+﻿<Window x:Class="WarrantyRepairCenter.UserInterfaces.CustomerWnd"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -17,8 +17,8 @@
             </Border>
             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,5,10,0">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100px"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
