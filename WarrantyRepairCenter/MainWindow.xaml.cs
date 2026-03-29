@@ -26,5 +26,16 @@ namespace WarrantyRepairCenter
             CustomerWnd wnd = new CustomerWnd();
             wnd.ShowDialog();
         }
+        private void manageEmployeeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            EmployeeWnd wnd = new EmployeeWnd();
+            wnd.ShowDialog();
+        }
+        private void manageRepairTicketBtn_Click(object sender, RoutedEventArgs e)
+        {
+            RepairTicketWnd wnd = new RepairTicketWnd();
+            wnd.ShowDialog();
+        }
+
     }
 }
