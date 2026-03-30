@@ -52,6 +52,7 @@
                 <StackPanel>
                     <Button x:Name="btnCustomers" Height="40" Content="Customers" FontSize="14" FontWeight="Bold" HorizontalAlignment="Stretch" Margin="5" Click="btnCustomers_Click"/>
                     <Button x:Name="btnRepairTickets" Height="40" Content="Repair tickets" FontSize="14" FontWeight="Bold" HorizontalAlignment="Stretch" Margin="5" Click="btnRepairTickets_Click"/>
+                    <Button x:Name="btnDevices" Height="40" Content="Devices" FontSize="14" FontWeight="Bold" HorizontalAlignment="Stretch" Margin="5" Click="btnDevices_Click"/>
                     <Button x:Name="btnParts" Height="40" Content="Parts" FontSize="14" FontWeight="Bold" HorizontalAlignment="Stretch" Margin="5" Click="btnParts_Click"/>
                     <Button x:Name="btnServices" Height="40" Content="Services" FontSize="14" FontWeight="Bold" HorizontalAlignment="Stretch" Margin="5" Click="btnServices_Click"/>
                     <Button x:Name="btnEmployees" Height="40" Content="Employees" FontSize="14" FontWeight="Bold" HorizontalAlignment="Stretch" Margin="5" Click="btnEmployees_Click"/>

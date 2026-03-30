@@ -1,10 +1,9 @@
-﻿using WarrantyRepairCenter.Authentication;
-using WarrantyRepairCenter.DataAccessLayer;
+﻿using WarrantyRepairCenter.DataAccessLayer;
 using WarrantyRepairCenter.Entities;
 
 namespace WarrantyRepairCenter.BusinessLogicLayer
 {
-    internal class CustomerBLL
+    internal sealed class CustomerBLL : BLLBase
     {
         internal static CustomerBLL Instance { get; } = new CustomerBLL();
 
@@ -40,7 +39,7 @@ namespace WarrantyRepairCenter.BusinessLogicLayer
                 message = "Customer phone number cannot be empty.";
                 return false;
             }
-            if (!phoneNumber.All(p => char.IsAsciiDigit(p) || p == '+') 
+            if (!phoneNumber.All(p => char.IsAsciiDigit(p) || p == '+')
                 || phoneNumber.Count(p => p == '+') > 1
                 || (phoneNumber.Contains('+') && !phoneNumber.StartsWith('+')))
             {
@@ -149,12 +148,6 @@ namespace WarrantyRepairCenter.BusinessLogicLayer
             }
             message = "Customer removed successfully.";
             return true;
-        }
-
-        static void CheckAuth()
-        {
-            if (!AuthHelper.IsAuthenticated())
-                throw new UnauthenticatedException();
         }
     }
 }

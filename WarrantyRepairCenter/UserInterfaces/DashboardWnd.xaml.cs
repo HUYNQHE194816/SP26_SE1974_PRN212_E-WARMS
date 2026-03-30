@@ -44,7 +44,7 @@ namespace WarrantyRepairCenter.UserInterfaces
 
         private void logoutMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to logout?", "Confirm Logout", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+            if (MessageBox.Show(this, "Are you sure you want to logout?", "Confirm Logout", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
                 return;
             AuthHelper.Logout();
             LoginWindow wnd = new LoginWindow();
@@ -68,7 +68,11 @@ namespace WarrantyRepairCenter.UserInterfaces
 
         private void btnRepairTickets_Click(object sender, RoutedEventArgs e)
         {
-
+            //TODO: uncomment after merge
+            //RepairTicketWnd wnd = new RepairTicketWnd();
+            //Hide();
+            //wnd.ShowDialog();
+            //Show();
         }
 
         private void btnParts_Click(object sender, RoutedEventArgs e)
@@ -78,12 +82,24 @@ namespace WarrantyRepairCenter.UserInterfaces
 
         private void btnServices_Click(object sender, RoutedEventArgs e)
         {
-
+            ServiceWnd wnd = new ServiceWnd();
+            Hide();
+            wnd.ShowDialog();
+            Show();
         }
 
         private void btnEmployees_Click(object sender, RoutedEventArgs e)
         {
-
+            if (AuthHelper.CurrentEmployee.Role != EmployeeRole.Admin && AuthHelper.CurrentEmployee.Role != EmployeeRole.Manager)
+            {
+                MessageBox.Show(this, "You do not have permission to access this feature.", "Access Denied", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            // TODO: uncomment after merge
+            //EmployeeWnd wnd = new EmployeeWnd();
+            //Hide();
+            //wnd.ShowDialog();
+            //Show();
         }
     }
 }

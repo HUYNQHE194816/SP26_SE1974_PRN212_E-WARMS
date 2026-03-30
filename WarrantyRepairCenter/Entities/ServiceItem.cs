@@ -9,8 +9,8 @@ namespace WarrantyRepairCenter.Entities;
 public class ServiceItem : BaseEntity
 {
     public string Name { get; set; } = string.Empty;
-    public decimal BasePrice { get; set; }
     public string Description { get; set; } = string.Empty;
+    public decimal BasePrice { get; set; }
 }
 
 public class ServiceItemCfg : EntityCfg<ServiceItem>

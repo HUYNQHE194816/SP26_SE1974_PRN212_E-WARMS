@@ -8,7 +8,7 @@ namespace WarrantyRepairCenter.DataAccessLayer
     {
         public List<Customer> GetAllCustomers() => WRCDbCtx.Instance.Customers.AsNoTracking().ToList();
 
-        public Customer? GetCustomer(Guid id) => WRCDbCtx.Instance.Customers.AsNoTracking().FirstOrDefault(c => c.ID == id);
+        public Customer? GetCustomer(Guid id) => WRCDbCtx.Instance.Customers.FirstOrDefault(c => c.ID == id);
 
         public void AddCustomer(Customer customer)
         {
