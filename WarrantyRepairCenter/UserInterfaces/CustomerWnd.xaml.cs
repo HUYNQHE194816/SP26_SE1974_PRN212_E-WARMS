@@ -1,4 +1,4 @@
-﻿using System.Windows;
+using System.Windows;
 using System.Windows.Controls;
 using WarrantyRepairCenter.Authentication;
 using WarrantyRepairCenter.BusinessLogicLayer;
@@ -43,6 +43,7 @@ namespace WarrantyRepairCenter.UserInterfaces
                 Close();
                 return;
             }
+            MessageBox.Show(this, "Customer added successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             UpdateDG();
         }
 
@@ -66,6 +67,7 @@ namespace WarrantyRepairCenter.UserInterfaces
                 Close();
                 return;
             }
+            MessageBox.Show(this, "Customer updated successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             UpdateDG();
         }
 
@@ -87,6 +89,7 @@ namespace WarrantyRepairCenter.UserInterfaces
                 Close();
                 return;
             }
+            MessageBox.Show(this, "Customer removed successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             UpdateDG();
         }
 

@@ -62,6 +62,7 @@ namespace WarrantyRepairCenter.UserInterfaces
                 Close();
                 return;
             }
+            MessageBox.Show(this, "Device added successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             UpdateDG();
         }
 
@@ -91,6 +92,7 @@ namespace WarrantyRepairCenter.UserInterfaces
                 Close();
                 return;
             }
+            MessageBox.Show(this, "Device updated successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             UpdateDG();
         }
 
@@ -112,6 +114,7 @@ namespace WarrantyRepairCenter.UserInterfaces
                 Close();
                 return;
             }
+            MessageBox.Show(this, "Device removed successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             UpdateDG();
         }
 
