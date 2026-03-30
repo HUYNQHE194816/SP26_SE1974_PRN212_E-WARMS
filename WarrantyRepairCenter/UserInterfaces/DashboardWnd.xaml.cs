@@ -1,4 +1,4 @@
-﻿using System.Windows;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using WarrantyRepairCenter.Authentication;
@@ -85,7 +85,10 @@ namespace WarrantyRepairCenter.UserInterfaces
 
         private void btnDevices_Click(object sender, RoutedEventArgs e)
         {
-
+            DeviceWnd wnd = new DeviceWnd();
+            Hide();
+            wnd.ShowDialog();
+            Show();
         }
 
         private void btnServices_Click(object sender, RoutedEventArgs e)
