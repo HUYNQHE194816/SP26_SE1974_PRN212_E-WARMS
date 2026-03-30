@@ -9,17 +9,44 @@ namespace WarrantyRepairCenter.Authentication
 
         static DateTime lastTimeAccess;
 
-        internal static bool Login(string username, string password)
+        public static Employee CurrentEmployee
+        {
+            get
+            {
+                if (!IsAuthenticated())
+                    throw new InvalidOperationException("Not logged in.");
+                return currentEmployee!;
+            }
+        }
+
+        internal static bool Login(string username, string password, out string failedReason)
         {
             CreateAdminAccountIfNotExist();
             Employee? employee = WRCDbCtx.Instance.Employees.FirstOrDefault(e => e.Username == username);
-            if (employee is not null && BCrypt.Net.BCrypt.Verify(password, employee.PasswordHash))
+            if (employee is null)
             {
-                lastTimeAccess = DateTime.UtcNow;
-                currentEmployee = employee;
-                return true;
+                failedReason = "Invalid username or password.";
+                return false;
             }
-            return false;
+            if (employee.Status == EmployeeStatus.Locked)
+            {
+                failedReason = "Your account is locked. Please contact the administrator.";
+                return false;
+            }
+            if (employee.Status == EmployeeStatus.Terminated)
+            {
+                failedReason = "Your account is terminated. Please contact the administrator.";
+                return false;
+            }
+            if (!BCrypt.Net.BCrypt.Verify(password, employee.PasswordHash))
+            {
+                failedReason = "Password does not match.";
+                return false;
+            }
+            lastTimeAccess = DateTime.UtcNow;
+            currentEmployee = employee;
+            failedReason = string.Empty;
+            return true;
         }
 
         internal static void Logout()
@@ -41,13 +68,6 @@ namespace WarrantyRepairCenter.Authentication
             return false;
         }
 
-        internal static bool CheckRole(Role role)
-        {
-            if (!IsAuthenticated())
-                return false;
-            return currentEmployee!.Role >= role;
-        }
-
         static void CreateAdminAccountIfNotExist()
         {
             Employee? admin = WRCDbCtx.Instance.Employees.FirstOrDefault(e => e.Username == "admin");
@@ -55,14 +75,21 @@ namespace WarrantyRepairCenter.Authentication
             {
                 admin = new Employee
                 {
-                    FullName = "Admin",
+                    FullName = "Administrator",
                     Username = "admin",
                     PasswordHash = BCrypt.Net.BCrypt.HashPassword("Admin@123"),
-                    Role = Role.Admin
+                    Role = EmployeeRole.Admin
                 };
                 WRCDbCtx.Instance.Employees.Add(admin);
                 WRCDbCtx.Instance.SaveChanges();
             }
+        }
+
+        internal static bool VerifyPassword(string password)
+        {
+            if (!IsAuthenticated())
+                throw new InvalidOperationException("Not logged in.");
+            return BCrypt.Net.BCrypt.Verify(password, currentEmployee!.PasswordHash);
         }
     }
 }

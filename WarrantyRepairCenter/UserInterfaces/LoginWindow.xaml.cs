@@ -44,9 +44,9 @@ namespace WarrantyRepairCenter.UserInterfaces
                 txtPassword.Focus();
                 return;
             }
-            if (!AuthHelper.Login(username, password))
+            if (!AuthHelper.Login(username, password, out string failedReason))
             {
-                MessageBox.Show(this, "Invalid username or password.", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(this, failedReason, "Login Failed", MessageBoxButton.OK, MessageBoxImage.Error);
                 txtUsername.Focus();
                 return;
             }

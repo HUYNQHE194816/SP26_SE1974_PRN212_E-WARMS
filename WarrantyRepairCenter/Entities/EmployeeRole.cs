@@ -1,6 +1,6 @@
 ﻿namespace WarrantyRepairCenter.Entities;
 
-public enum Role
+public enum EmployeeRole
 {
     Admin,
     Manager,
