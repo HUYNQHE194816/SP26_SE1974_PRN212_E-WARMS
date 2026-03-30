@@ -45,9 +45,44 @@ namespace WarrantyRepairCenter.BusinessLogicLayer
                 message = "Device name cannot be empty.";
                 return false;
             }
+            if (name.Trim().Length > 100)
+            {
+                message = "Device name cannot exceed 100 characters.";
+                return false;
+            }
             if (string.IsNullOrWhiteSpace(type))
             {
                 message = "Device type cannot be empty.";
+                return false;
+            }
+            if (type.Trim().Length > 100)
+            {
+                message = "Device type cannot exceed 100 characters.";
+                return false;
+            }
+            if (!string.IsNullOrWhiteSpace(serial) && serial.Trim().Length > 100)
+            {
+                message = "Serial number cannot exceed 100 characters.";
+                return false;
+            }
+            if (!string.IsNullOrWhiteSpace(brand) && brand.Trim().Length > 100)
+            {
+                message = "Brand cannot exceed 100 characters.";
+                return false;
+            }
+            if (!string.IsNullOrWhiteSpace(model) && model.Trim().Length > 100)
+            {
+                message = "Model cannot exceed 100 characters.";
+                return false;
+            }
+            if (!string.IsNullOrWhiteSpace(color) && color.Trim().Length > 50)
+            {
+                message = "Color cannot exceed 50 characters.";
+                return false;
+            }
+            if (!string.IsNullOrWhiteSpace(physicalCondition) && physicalCondition.Trim().Length > 100)
+            {
+                message = "Physical condition cannot exceed 100 characters.";
                 return false;
             }
             if (customerId is null || customerId == Guid.Empty)

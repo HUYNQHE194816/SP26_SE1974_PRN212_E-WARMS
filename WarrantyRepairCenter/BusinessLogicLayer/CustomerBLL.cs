@@ -1,4 +1,5 @@
-﻿using WarrantyRepairCenter.DataAccessLayer;
+using System.Text.RegularExpressions;
+using WarrantyRepairCenter.DataAccessLayer;
 using WarrantyRepairCenter.Entities;
 
 namespace WarrantyRepairCenter.BusinessLogicLayer
@@ -29,9 +30,24 @@ namespace WarrantyRepairCenter.BusinessLogicLayer
                 message = "Customer name cannot be empty.";
                 return false;
             }
+            if (name.Trim().Length > 50)
+            {
+                message = "Customer name cannot exceed 50 characters.";
+                return false;
+            }
             if (string.IsNullOrWhiteSpace(email))
             {
                 message = "Customer email cannot be empty.";
+                return false;
+            }
+            if (!Regex.IsMatch(email.Trim(), @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                message = "Please enter a valid email address.";
+                return false;
+            }
+            if (email.Trim().Length > 100)
+            {
+                message = "Customer email cannot exceed 100 characters.";
                 return false;
             }
             if (string.IsNullOrWhiteSpace(phoneNumber))
@@ -46,9 +62,19 @@ namespace WarrantyRepairCenter.BusinessLogicLayer
                 message = "Customer phone number must contain only digits and an optional leading '+'.";
                 return false;
             }
+            if (phoneNumber.Trim().Length > 15)
+            {
+                message = "Customer phone number cannot exceed 15 characters.";
+                return false;
+            }
             if (string.IsNullOrWhiteSpace(address))
             {
                 message = "Customer address cannot be empty.";
+                return false;
+            }
+            if (address.Trim().Length > 200)
+            {
+                message = "Customer address cannot exceed 200 characters.";
                 return false;
             }
             try
