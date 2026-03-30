@@ -29,6 +29,9 @@ public class TicketDetailCfg : EntityCfg<TicketDetail>
         builder.ToTable("TicketDetail");
         builder.Property(td => td.Quantity).HasColumnName("quantity").IsRequired();
         builder.Property(td => td.UnitPrice).HasColumnName("unit_price").IsRequired().HasPrecision(18, 2);
+        builder.Property(td => td.RepairTicketID).HasColumnName("repair_ticket_id").IsRequired();
+        builder.Property(td => td.SparePartID).HasColumnName("spare_part_id").IsRequired(false);
+        builder.Property(td => td.ServiceItemID).HasColumnName("service_item_id").IsRequired(false);
         builder.HasOne(td => td.RepairTicket)
             .WithMany(rt => rt.TicketDetails)
             .HasForeignKey(td => td.RepairTicketID)

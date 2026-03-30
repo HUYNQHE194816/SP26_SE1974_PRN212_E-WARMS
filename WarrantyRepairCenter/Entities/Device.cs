@@ -36,7 +36,7 @@ public class DeviceCfg : EntityCfg<Device>
         builder.Property(c => c.Color).HasColumnName("color").HasMaxLength(50);
         builder.Property(c => c.PhysicalCondition).HasColumnName("physical_condition").HasMaxLength(100);
         builder.Property(c => c.Notes).HasColumnName("notes").HasMaxLength(-1);
-
+        builder.Property(c => c.CustomerID).HasColumnName("customer_id").IsRequired();
         builder.HasOne(d => d.Customer)
                .WithMany(c => c.Devices)
                .HasForeignKey(d => d.CustomerID)

@@ -37,6 +37,8 @@ public class RepairTicketCfg : EntityCfg<RepairTicket>
         builder.Property(t => t.Notes).HasColumnName("notes").IsRequired().HasMaxLength(-1);
         builder.Property(t => t.TotalAmount).HasColumnName("total_amount").HasPrecision(18, 2);
         builder.Property(t => t.Deposit).HasColumnName("deposit").HasPrecision(18, 2);
+        builder.Property(t => t.DeviceID).HasColumnName("device_id").IsRequired();
+        builder.Property(t => t.TechnicianID).HasColumnName("technician_id");
         builder.HasOne(t => t.Device)
             .WithMany(d => d.RepairTickets)
             .HasForeignKey(t => t.DeviceID)
