@@ -90,6 +90,8 @@ namespace WarrantyRepairCenter.UserInterfaces
                 return;
             }
             MessageBox.Show(this, "Customer removed successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            txtName.Text = txtPhone.Text = txtEmail.Text = txtAddress.Text = string.Empty;
+            dgData.SelectedItem = null;
             UpdateDG();
         }
 

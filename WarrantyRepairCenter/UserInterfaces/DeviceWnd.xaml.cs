@@ -115,6 +115,7 @@ namespace WarrantyRepairCenter.UserInterfaces
                 return;
             }
             MessageBox.Show(this, "Device removed successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            ClearForm();
             UpdateDG();
         }
 
