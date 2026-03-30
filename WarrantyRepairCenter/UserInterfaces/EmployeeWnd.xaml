@@ -27,6 +27,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
                 <Label Grid.Row="0" Grid.Column="0" Margin="5" Content="Full Name:"/>
@@ -40,6 +41,8 @@
 
                 <Label Grid.Row="3" Grid.Column="0" Margin="5" Content="Role:"/>
                 <ComboBox Grid.Row="3" Grid.Column="1" Margin="5" x:Name="cboRole"/>
+                <Label Grid.Row="4" Grid.Column="0" Margin="5" Content="Status:"/>
+                <ComboBox Grid.Row="4" Grid.Column="1" Margin="5" x:Name="cboStatus"/>
             </Grid>
 
             <StackPanel Margin="5" HorizontalAlignment="Center" Orientation="Horizontal">
@@ -60,9 +63,10 @@
                   AutoGenerateColumns="False" CanUserAddRows="False"
                   SelectionChanged="dgData_SelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Full Name" Binding="{Binding FullName}" Width="30*"/>
                 <DataGridTextColumn Header="Username"  Binding="{Binding Username}"  Width="20*"/>
-                <DataGridTextColumn Header="Role"      Binding="{Binding Role}"      Width="15*"/>
+                <DataGridTextColumn Header="Full Name" Binding="{Binding FullName}" Width="30*"/>
+                <DataGridTextColumn Header="Role"      Binding="{Binding Role}"      Width="10*"/>
+                <DataGridTextColumn Header="Status"      Binding="{Binding Status}"      Width="10*"/>
                 <DataGridTextColumn Header="Created"
                                     Binding="{Binding CreationTime, StringFormat=\{0:yyyy-MM-dd\}}"
                                     Width="15*"/>

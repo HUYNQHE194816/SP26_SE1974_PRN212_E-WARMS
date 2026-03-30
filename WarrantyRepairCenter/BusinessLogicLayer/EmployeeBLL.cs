@@ -83,7 +83,7 @@ namespace WarrantyRepairCenter.BusinessLogicLayer
             return true;
         }
 
-        public bool UpdateEmployee(Guid? id, string fullName, string username, EmployeeRole role, out string message)
+        public bool UpdateEmployee(Guid? id, string fullName, string username, EmployeeRole role, EmployeeStatus status, out string message)
         {
             if (id is null)
             {
@@ -133,6 +133,7 @@ namespace WarrantyRepairCenter.BusinessLogicLayer
                 employee.FullName = fullName;
                 employee.Username = username;
                 employee.Role = role;
+                employee.Status = status;
                 _dal.UpdateEmployee(employee);
             }
             catch (Exception ex)

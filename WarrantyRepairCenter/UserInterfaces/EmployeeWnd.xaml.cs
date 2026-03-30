@@ -12,6 +12,8 @@ namespace WarrantyRepairCenter.UserInterfaces
             InitializeComponent();
             cboRole.ItemsSource = Enum.GetValues(typeof(EmployeeRole));
             cboRole.SelectedIndex = 0;
+            cboStatus.ItemsSource = Enum.GetValues(typeof(EmployeeStatus));
+            cboStatus.SelectedIndex = 0;
             UpdateDG();
         }
 
@@ -28,7 +30,7 @@ namespace WarrantyRepairCenter.UserInterfaces
             string username = txtUsername.Text.Trim();
             string password = pwdPassword.Password;
             EmployeeRole role = (EmployeeRole)cboRole.SelectedItem;
-
+            cboStatus.SelectedItem = EmployeeStatus.Active;
             bool success = EmployeeBLL.Instance.AddEmployee(fullName, username, password, role, out string message);
             MessageBox.Show(message, success ? "Success" : "Error",
                 MessageBoxButton.OK, success ? MessageBoxImage.Information : MessageBoxImage.Error);
@@ -41,8 +43,8 @@ namespace WarrantyRepairCenter.UserInterfaces
             string fullName = txtFullName.Text.Trim();
             string username = txtUsername.Text.Trim();
             EmployeeRole role = (EmployeeRole)cboRole.SelectedItem;
-
-            bool success = EmployeeBLL.Instance.UpdateEmployee(employee?.ID, fullName, username, role, out string message);
+            EmployeeStatus status = (EmployeeStatus)cboStatus.SelectedItem;
+            bool success = EmployeeBLL.Instance.UpdateEmployee(employee?.ID, fullName, username, role, status, out string message);
             MessageBox.Show(message, success ? "Success" : "Error",
                 MessageBoxButton.OK, success ? MessageBoxImage.Information : MessageBoxImage.Error);
             if (success) UpdateDG();
@@ -84,6 +86,7 @@ namespace WarrantyRepairCenter.UserInterfaces
             txtUsername.Text = selected.Username;
             pwdPassword.Clear();
             cboRole.SelectedItem = selected.Role;
+            cboStatus.SelectedItem = selected.Status;
         }
 
         void UpdateDG() => dgData.ItemsSource = EmployeeBLL.Instance.GetAllEmployees();
@@ -93,6 +96,7 @@ namespace WarrantyRepairCenter.UserInterfaces
             txtFullName.Text = txtUsername.Text = string.Empty;
             pwdPassword.Clear();
             cboRole.SelectedIndex = 0;
+            cboStatus.SelectedIndex = 0;
         }
     }
 }
