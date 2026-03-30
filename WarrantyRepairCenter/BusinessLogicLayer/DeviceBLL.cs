@@ -1,5 +1,6 @@
 using WarrantyRepairCenter.DataAccessLayer;
 using WarrantyRepairCenter.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace WarrantyRepairCenter.BusinessLogicLayer
 {

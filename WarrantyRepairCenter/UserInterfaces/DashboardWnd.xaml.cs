@@ -68,11 +68,10 @@ namespace WarrantyRepairCenter.UserInterfaces
 
         private void btnRepairTickets_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: uncomment after merge
-            //RepairTicketWnd wnd = new RepairTicketWnd();
-            //Hide();
-            //wnd.ShowDialog();
-            //Show();
+            RepairTicketWnd wnd = new RepairTicketWnd();
+            Hide();
+            wnd.ShowDialog();
+            Show();
         }
 
         private void btnParts_Click(object sender, RoutedEventArgs e)
@@ -106,11 +105,10 @@ namespace WarrantyRepairCenter.UserInterfaces
                 MessageBox.Show(this, "You do not have permission to access this feature.", "Access Denied", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            // TODO: uncomment after merge
-            //EmployeeWnd wnd = new EmployeeWnd();
-            //Hide();
-            //wnd.ShowDialog();
-            //Show();
+            EmployeeWnd wnd = new EmployeeWnd();
+            Hide();
+            wnd.ShowDialog();
+            Show();
         }
     }
 }

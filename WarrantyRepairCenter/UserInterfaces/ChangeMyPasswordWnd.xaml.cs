@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using WarrantyRepairCenter.Authentication;
+using WarrantyRepairCenter.BusinessLogicLayer;
 
 namespace WarrantyRepairCenter.UserInterfaces
 {
@@ -52,12 +53,11 @@ namespace WarrantyRepairCenter.UserInterfaces
                 txtOldPass.Focus();
                 return;
             }
-            // TODO: uncomment after merge
-            //if (!EmployeeBLL.ChangePassword(AuthHelper.CurrentEmployee.ID, newPassword, out string errorMessage))
-            //{
-            //    MessageBox.Show(this, errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            //    return;
-            //}
+            if (!EmployeeBLL.Instance.ChangePassword(AuthHelper.CurrentEmployee.ID, newPassword, out string errorMessage))
+            {
+                MessageBox.Show(this, errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             MessageBox.Show(this, "Password changed successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             AuthHelper.Logout();
             DialogResult = true;
