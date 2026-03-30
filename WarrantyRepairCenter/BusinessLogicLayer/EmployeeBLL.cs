@@ -1,4 +1,6 @@
-﻿using WarrantyRepairCenter.DataAccessLayer;
+﻿using System.Windows;
+using WarrantyRepairCenter.Authentication;
+using WarrantyRepairCenter.DataAccessLayer;
 using WarrantyRepairCenter.Entities;
 
 namespace WarrantyRepairCenter.BusinessLogicLayer
@@ -28,6 +30,31 @@ namespace WarrantyRepairCenter.BusinessLogicLayer
             if (string.IsNullOrWhiteSpace(password))
             {
                 message = "Password cannot be empty.";
+                return false;
+            }
+            if (username.Length < 4 || username.Length > 20)
+            {
+                message = "Username must be between 4 and 20 characters long.";
+                return false;
+            }
+            if (password.Length < 8 || password.Length > 20)
+            {
+                message = "Password must be between 8 and 20 characters long.";
+                return false;
+            }
+            if (username.Contains(' ') || password.Contains(' '))
+            {
+                message = "Username and password cannot contain spaces.";
+                return false;
+            }
+            if (!password.Any(char.IsUpper) || !password.Any(char.IsLower) || !password.Any(char.IsDigit) || !password.Any(ch => !char.IsLetterOrDigit(ch)))
+            {
+                message = "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character.";
+                return false;
+            }
+            if (role == EmployeeRole.Admin)
+            {
+                message = "Cannot assign Admin role to new employee.";
                 return false;
             }
             if (_dal.GetEmployeeByUsername(username) != null)
@@ -79,6 +106,21 @@ namespace WarrantyRepairCenter.BusinessLogicLayer
                 message = "Username cannot be empty.";
                 return false;
             }
+            if (username.Length < 4 || username.Length > 20)
+            {
+                message = "Username must be between 4 and 20 characters long.";
+                return false;
+            }
+            if (username.Contains(' '))
+            {
+                message = "Username cannot contain spaces.";
+                return false;
+            }
+            if (role != EmployeeRole.Admin && employee.Role == EmployeeRole.Admin)
+            {
+                message = "Cannot change Admin role.";
+                return false;
+            }
             // Check duplicate username (except for current employee)
             Employee? existing = _dal.GetEmployeeByUsername(username);
             if (existing != null && existing.ID != id.Value)
@@ -113,6 +155,21 @@ namespace WarrantyRepairCenter.BusinessLogicLayer
             {
                 message = "Password cannot be empty.";
                 return false;
+            } 
+            if (newPassword.Length < 8 || newPassword.Length > 20)
+            {
+                message = "Password must be between 8 and 20 characters long.";
+                return false;
+            }
+            if (newPassword.Contains(' '))
+            {
+                message = "Password cannot contain spaces.";
+                return false;
+            }
+            if (!newPassword.Any(char.IsUpper) || !newPassword.Any(char.IsLower) || !newPassword.Any(char.IsDigit) || !newPassword.Any(ch => !char.IsLetterOrDigit(ch)))
+            {
+                message = "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character.";
+                return false;
             }
             Employee? employee = GetEmployee(id.Value);
             if (employee is null)
@@ -143,6 +200,17 @@ namespace WarrantyRepairCenter.BusinessLogicLayer
             }
             try
             {
+                Employee? employee = GetEmployee(id.Value);
+                if (employee?.ID == AuthHelper.CurrentEmployee.ID)
+                {
+                    message = "Cannot remove currently logged-in employee.";
+                    return false;
+                }
+                if (employee?.Role == EmployeeRole.Admin)
+                {
+                    message = "Cannot remove Admin.";
+                    return false;
+                }
                 _dal.DeleteEmployee(id.Value);
             }
             catch (Exception ex)
