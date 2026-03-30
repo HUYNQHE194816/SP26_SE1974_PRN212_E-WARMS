@@ -16,7 +16,6 @@ namespace WarrantyRepairCenter.DataAccessLayer
 
         public RepairTicket? GetRepairTicket(Guid id) =>
             WRCDbCtx.Instance.RepairTickets
-                .AsNoTracking()
                 .Include(t => t.Device)
                     .ThenInclude(d => d.Customer)
                 .Include(t => t.Technician)

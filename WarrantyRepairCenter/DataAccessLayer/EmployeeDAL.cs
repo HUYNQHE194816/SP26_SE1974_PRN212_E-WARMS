@@ -10,10 +10,10 @@ namespace WarrantyRepairCenter.DataAccessLayer
             WRCDbCtx.Instance.Employees.AsNoTracking().ToList();
 
         public Employee? GetEmployee(Guid id) =>
-            WRCDbCtx.Instance.Employees.AsNoTracking().FirstOrDefault(e => e.ID == id);
+            WRCDbCtx.Instance.Employees.FirstOrDefault(e => e.ID == id);
 
         public Employee? GetEmployeeByUsername(string username) =>
-            WRCDbCtx.Instance.Employees.AsNoTracking().FirstOrDefault(e => e.Username == username);
+            WRCDbCtx.Instance.Employees.FirstOrDefault(e => e.Username == username);
 
         public void AddEmployee(Employee employee)
         {

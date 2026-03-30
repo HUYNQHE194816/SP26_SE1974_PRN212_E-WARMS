@@ -14,7 +14,6 @@ namespace WarrantyRepairCenter.DataAccessLayer
         public List<Device> GetDevicesByCustomer(Guid customerId) => WRCDbCtx.Instance.Devices
             .Include(d => d.Customer)
             .Where(d => d.CustomerID == customerId)
-            .AsNoTracking()
             .ToList();
 
         public Device? GetDevice(Guid id) => WRCDbCtx.Instance.Devices
