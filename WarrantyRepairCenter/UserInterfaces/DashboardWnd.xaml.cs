@@ -100,7 +100,7 @@ namespace WarrantyRepairCenter.UserInterfaces
 
         private void btnEmployees_Click(object sender, RoutedEventArgs e)
         {
-            if (AuthHelper.CurrentEmployee.Role != EmployeeRole.Admin && AuthHelper.CurrentEmployee.Role != EmployeeRole.Manager)
+            if (AuthHelper.CurrentEmployee.Role != EmployeeRole.Admin)
             {
                 MessageBox.Show(this, "You do not have permission to access this feature.", "Access Denied", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
