@@ -5,9 +5,58 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WarrantyRepairCenter.UserInterfaces"
         mc:Ignorable="d"
-        Title="DashboardWnd" Height="450" Width="800">
+        Title="Warranty Repair Center Management Software" Height="300" Width="350" MinHeight="300" MinWidth="350">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Opacity" Value="0.75"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Grid>
-        <Button x:Name="logoutBtn" Content="Logout" HorizontalAlignment="Left" Margin="41,35,0,0" VerticalAlignment="Top" Click="logoutBtn_Click"/>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Background="#555" BorderThickness="0" Height="35">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="Warranty Repair Center" Foreground="White" FontSize="14" FontWeight="Bold" VerticalAlignment="Center" Margin="10,0"/>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10,0">
+                    <StackPanel Margin="0,0,5,0">
+                        <Label x:Name="lbDisplayName" Content="Display name" Foreground="White" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" Margin="0" Padding="0"/>
+                        <Label x:Name="lbRole" Content="Role name" Foreground="White" FontSize="8" HorizontalAlignment="Right" Margin="0" Padding="0"/>
+                    </StackPanel>
+                    <Button x:Name="btnUserMenu" Content="☰" Foreground="White" Background="Transparent" BorderThickness="0" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" Click="btnUserMenu_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Border x:Name="bCurrentUserControl" Grid.Row="1">
+            <ScrollViewer
+                VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <Button x:Name="btnCustomers" Height="40" Content="Customers" FontSize="14" FontWeight="Bold" HorizontalAlignment="Stretch" Margin="5" Click="btnCustomers_Click"/>
+                    <Button x:Name="btnRepairTickets" Height="40" Content="Repair tickets" FontSize="14" FontWeight="Bold" HorizontalAlignment="Stretch" Margin="5" Click="btnRepairTickets_Click"/>
+                    <Button x:Name="btnParts" Height="40" Content="Parts" FontSize="14" FontWeight="Bold" HorizontalAlignment="Stretch" Margin="5" Click="btnParts_Click"/>
+                    <Button x:Name="btnServices" Height="40" Content="Services" FontSize="14" FontWeight="Bold" HorizontalAlignment="Stretch" Margin="5" Click="btnServices_Click"/>
+                    <Button x:Name="btnEmployees" Height="40" Content="Employees" FontSize="14" FontWeight="Bold" HorizontalAlignment="Stretch" Margin="5" Click="btnEmployees_Click"/>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
     </Grid>
 </Window>
