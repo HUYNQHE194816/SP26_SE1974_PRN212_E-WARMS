@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using WarrantyRepairCenter.DBContext;
+using WarrantyRepairCenter.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace WarrantyRepairCenter.BusinessLogicLayer
 {
     internal class DeviceBLL
     {
+        internal static DeviceBLL Instance { get; } = new DeviceBLL();
+
+        public List<Device> GetAllDevices() =>
+            WRCDbCtx.Instance.Devices
+                .AsNoTracking()
+                .Include(d => d.Customer)
+                .ToList();
     }
 }

@@ -7,7 +7,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button x:Name="manageCustomerBtn" Content="Manage customer" HorizontalAlignment="Left" Margin="58,42,0,0" VerticalAlignment="Top" Height="142" Width="342" Click="manageCustomerBtn_Click"/>
-
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button x:Name="manageCustomerBtn" Content="Manage customer"
+                Height="80" Width="300" Margin="0,0,0,10"
+                Click="manageCustomerBtn_Click"/>
+            <Button x:Name="manageEmployeeBtn" Content="Manage employee"
+                Height="80" Width="300" Margin="0,0,0,10"
+                Click="manageEmployeeBtn_Click"/>
+            <Button x:Name="manageRepairTicketBtn" Content="Manage repair ticket"
+                Height="80" Width="300"
+                Click="manageRepairTicketBtn_Click"/>
+        </StackPanel>
     </Grid>
 </Window>
