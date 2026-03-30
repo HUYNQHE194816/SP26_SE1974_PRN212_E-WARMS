@@ -77,6 +77,14 @@ namespace WarrantyRepairCenter.UserInterfaces
 
         private void btnParts_Click(object sender, RoutedEventArgs e)
         {
+            SparePartWnd wnd = new SparePartWnd();
+            Hide();
+            wnd.ShowDialog();
+            Show();
+        }
+
+        private void btnDevices_Click(object sender, RoutedEventArgs e)
+        {
 
         }
 
