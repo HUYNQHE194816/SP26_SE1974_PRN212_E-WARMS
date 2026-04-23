@@ -81,6 +81,30 @@
                     
                     <!-- Buttons -->
                     <Button x:Name="btnLogin" Content="Sign In" Style="{StaticResource ModernButtonStyle}" Height="50" FontSize="16" Click="btnLogin_Click" Margin="0,40,0,0"/>
+                    
+                    <!-- Default Admin Credentials Hint -->
+                    <Border Margin="0,20,0,0" CornerRadius="10" Padding="14,10" Background="#F0F4FF" BorderBrush="#C7D2FE" BorderThickness="1">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
+                                <TextBlock Text="🔑" FontSize="14" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                                <TextBlock Text="Default Admin Account" FontSize="13" FontWeight="SemiBold" Foreground="#3730A3"/>
+                            </StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="Username:" FontSize="12" Foreground="#6366F1" FontWeight="SemiBold" Margin="0,0,8,2"/>
+                                <TextBlock Grid.Row="0" Grid.Column="1" Text="admin" FontSize="12" Foreground="#1E1B4B" FontFamily="Consolas"/>
+                                <TextBlock Grid.Row="1" Grid.Column="0" Text="Password:" FontSize="12" Foreground="#6366F1" FontWeight="SemiBold" Margin="0,0,8,0"/>
+                                <TextBlock Grid.Row="1" Grid.Column="1" Text="Admin@123" FontSize="12" Foreground="#1E1B4B" FontFamily="Consolas"/>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
                 </StackPanel>
             </Grid>
         </Grid>
