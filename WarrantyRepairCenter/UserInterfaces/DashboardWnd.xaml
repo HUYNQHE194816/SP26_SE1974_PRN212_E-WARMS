@@ -1,61 +1,91 @@
-﻿<Window x:Class="WarrantyRepairCenter.UserInterfaces.DashboardWnd"
+<Window x:Class="WarrantyRepairCenter.UserInterfaces.DashboardWnd"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WarrantyRepairCenter.UserInterfaces"
-        mc:Ignorable="d"
-        Title="Warranty Repair Center Management Software" Height="300" Width="350" MinHeight="300" MinWidth="350">
-    <Window.Resources>
-        <Style TargetType="Button">
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
-                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Opacity" Value="0.75"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-    </Window.Resources>
+        Title="Warranty Repair Center - Dashboard" Height="600" Width="850" MinHeight="500" MinWidth="700" 
+        WindowStartupLocation="CenterScreen" 
+        Background="{StaticResource BackgroundBrush}">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Border Grid.Row="0" Background="#555" BorderThickness="0" Height="35">
+        
+        <!-- Top Navigation Bar -->
+        <Border Grid.Row="0" Background="{StaticResource SurfaceBrush}" BorderThickness="0,0,0,1" BorderBrush="{StaticResource BorderBrush}" Padding="20,0">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Content="Warranty Repair Center" Foreground="White" FontSize="14" FontWeight="Bold" VerticalAlignment="Center" Margin="10,0"/>
-                <StackPanel Grid.Column="1" Orientation="Horizontal" Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10,0">
-                    <StackPanel Margin="0,0,5,0">
-                        <Label x:Name="lbDisplayName" Content="Display name" Foreground="White" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" Margin="0" Padding="0"/>
-                        <Label x:Name="lbRole" Content="Role name" Foreground="White" FontSize="8" HorizontalAlignment="Right" Margin="0" Padding="0"/>
+                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                    <!-- Brand -->
+                    <TextBlock Text="E-" FontWeight="Bold" FontSize="22" Foreground="{StaticResource PrimaryBrush}"/>
+                    <TextBlock Text="WARMS" FontWeight="Bold" FontSize="22" Foreground="{StaticResource TextPrimaryBrush}"/>
+                    <TextBlock Text=" | Warranty Repair Center" FontSize="16" Foreground="{StaticResource TextSecondaryBrush}" VerticalAlignment="Bottom" Margin="10,0,0,3"/>
+                </StackPanel>
+                
+                <!-- User Profile & Menu -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <StackPanel Margin="0,0,15,0" VerticalAlignment="Center">
+                        <TextBlock x:Name="lbDisplayName" Text="Display name" FontWeight="SemiBold" FontSize="15" Foreground="{StaticResource TextPrimaryBrush}" HorizontalAlignment="Right"/>
+                        <TextBlock x:Name="lbRole" Text="Role name" FontSize="12" Foreground="{StaticResource TextSecondaryBrush}" HorizontalAlignment="Right"/>
                     </StackPanel>
-                    <Button x:Name="btnUserMenu" Content="☰" Foreground="White" Background="Transparent" BorderThickness="0" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" Click="btnUserMenu_Click"/>
+                    <Button x:Name="btnUserMenu" Content="⚙ Logout" Style="{StaticResource SecondaryButtonStyle}" Height="36" Padding="15,0" Click="btnUserMenu_Click"/>
                 </StackPanel>
             </Grid>
         </Border>
-        <Border x:Name="bCurrentUserControl" Grid.Row="1">
-            <ScrollViewer
-                VerticalScrollBarVisibility="Auto">
+
+        <!-- Main Content Area -->
+        <Border x:Name="bCurrentUserControl" Grid.Row="1" Padding="30">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel>
-                    <Button x:Name="btnCustomers" Height="40" Content="Customers" FontSize="14" FontWeight="Bold" HorizontalAlignment="Stretch" Margin="5" Click="btnCustomers_Click"/>
-                    <Button x:Name="btnRepairTickets" Height="40" Content="Repair tickets" FontSize="14" FontWeight="Bold" HorizontalAlignment="Stretch" Margin="5" Click="btnRepairTickets_Click"/>
-                    <Button x:Name="btnDevices" Height="40" Content="Devices" FontSize="14" FontWeight="Bold" HorizontalAlignment="Stretch" Margin="5" Click="btnDevices_Click"/>
-                    <Button x:Name="btnParts" Height="40" Content="Parts" FontSize="14" FontWeight="Bold" HorizontalAlignment="Stretch" Margin="5" Click="btnParts_Click"/>
-                    <Button x:Name="btnServices" Height="40" Content="Services" FontSize="14" FontWeight="Bold" HorizontalAlignment="Stretch" Margin="5" Click="btnServices_Click"/>
-                    <Button x:Name="btnEmployees" Height="40" Content="Employees" FontSize="14" FontWeight="Bold" HorizontalAlignment="Stretch" Margin="5" Click="btnEmployees_Click"/>
+                    <TextBlock Text="Welcome back! 👋" FontSize="26" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}" Margin="0,0,0,5"/>
+                    <TextBlock Text="What would you like to manage today?" FontSize="15" Foreground="{StaticResource TextSecondaryBrush}" Margin="0,0,0,30"/>
+                    
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="-10">
+                        <WrapPanel.Resources>
+                            <Style TargetType="Button" BasedOn="{StaticResource ModernButtonStyle}">
+                                <Setter Property="Width" Value="220" />
+                                <Setter Property="Height" Value="140" />
+                                <Setter Property="Margin" Value="10" />
+                                <Setter Property="Background" Value="{StaticResource SurfaceBrush}" />
+                                <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" />
+                                <Setter Property="FontSize" Value="16" />
+                                <Setter Property="BorderThickness" Value="1" />
+                                <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="12" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                                                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                                    <!-- Icon placeholder using large text emoji/unicode for now -->
+                                                    <TextBlock x:Name="icon" Text="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}" FontSize="36" HorizontalAlignment="Center" Margin="0,0,0,15" Foreground="{StaticResource PrimaryBrush}"/>
+                                                    <TextBlock Text="{TemplateBinding Content}" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center" Foreground="{StaticResource TextPrimaryBrush}"/>
+                                                </StackPanel>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="border" Property="Background" Value="#F1F5F9"/>
+                                                    <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
+                                                </Trigger>
+                                                <Trigger Property="IsPressed" Value="True">
+                                                    <Setter TargetName="border" Property="Background" Value="#E2E8F0"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </WrapPanel.Resources>
+
+                        <Button x:Name="btnCustomers" Content="Customers" Tag="👥" Click="btnCustomers_Click"/>
+                        <Button x:Name="btnDevices" Content="Devices" Tag="📱" Click="btnDevices_Click"/>
+                        <Button x:Name="btnRepairTickets" Content="Repair Tickets" Tag="🎫" Click="btnRepairTickets_Click"/>
+                        <Button x:Name="btnParts" Content="Spare Parts" Tag="⚙️" Click="btnParts_Click"/>
+                        <Button x:Name="btnServices" Content="Services" Tag="🛠️" Click="btnServices_Click"/>
+                        <Button x:Name="btnEmployees" Content="Employees" Tag="👨‍💼" Click="btnEmployees_Click"/>
+
+                    </WrapPanel>
                 </StackPanel>
             </ScrollViewer>
         </Border>

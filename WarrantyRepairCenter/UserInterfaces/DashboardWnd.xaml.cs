@@ -22,8 +22,8 @@ namespace WarrantyRepairCenter.UserInterfaces
             logoutMenuItem.Click += logoutMenuItem_Click;
             userCtxMenu.Items.Add(logoutMenuItem);
             btnUserMenu.ContextMenu = userCtxMenu;
-            lbDisplayName.Content = AuthHelper.CurrentEmployee.FullName;
-            lbRole.Content = AuthHelper.CurrentEmployee.Role.ToString();
+            lbDisplayName.Text = AuthHelper.CurrentEmployee.FullName;
+            lbRole.Text = AuthHelper.CurrentEmployee.Role.ToString();
             if (AuthHelper.CurrentEmployee.Role != EmployeeRole.Admin && AuthHelper.CurrentEmployee.Role != EmployeeRole.Manager)
                 btnEmployees.Visibility = Visibility.Collapsed;
         }

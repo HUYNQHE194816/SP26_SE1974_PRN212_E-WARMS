@@ -1,4 +1,4 @@
-﻿using System.Windows;
+using System.Windows;
 using WarrantyRepairCenter.Authentication;
 
 namespace WarrantyRepairCenter.UserInterfaces
@@ -8,6 +8,12 @@ namespace WarrantyRepairCenter.UserInterfaces
         public LoginWindow()
         {
             InitializeComponent();
+        }
+
+        private void Window_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == System.Windows.Input.MouseButton.Left)
+                this.DragMove();
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
